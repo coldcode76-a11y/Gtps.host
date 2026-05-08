@@ -205,7 +205,7 @@ button:hover {
       <p>Login to your hosting dashboard</p><input type="text" id="loginUser" placeholder="Username" />
   <input type="password" id="loginPass" placeholder="Password" />
 
-  <button onclick="goDashboard()">Login</button>
+  <button type="button" onclick="goDashboard()">Login</button>
 
   <p style="margin-top:20px">
     You dont have an account?
@@ -222,7 +222,7 @@ button:hover {
   <input type="email" id="regEmail" placeholder="Email" />
   <input type="password" id="regPass" placeholder="Password" />
 
-  <button onclick="showLogin()">Register</button>
+  <button type="button" onclick="registerAccount()">Register</button>
 
   <p style="margin-top:20px">
     Already have account?
@@ -298,7 +298,7 @@ button:hover {
 
 </div>
 
-<div style="flex:1;min-width:300px;">
+<div style="flex:1;min-width:300px;display:flex;flex-direction:column;gap:20px;">
 
 <div class="dashboard-container">
 
@@ -440,14 +440,28 @@ button:hover {
     }
 
     function showLogin() {
-      document.getElementById('registerPage').style.display = 'none';
-      document.getElementById('loginPage').style.display = 'flex';
+      const registerPage = document.getElementById('registerPage');
+      const loginPage = document.getElementById('loginPage');
+
+      registerPage.style.display = 'none';
+      loginPage.style.display = 'flex';
     }
 
     function goDashboard() {
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('registerPage').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
+      const loginPage = document.getElementById('loginPage');
+      const registerPage = document.getElementById('registerPage');
+      const dashboard = document.getElementById('dashboard');
+
+      loginPage.style.display = 'none';
+      registerPage.style.display = 'none';
+      dashboard.style.display = 'block';
+
+      window.scrollTo(0,0);
+    }
+
+    function registerAccount() {
+      alert('Account created successfully');
+      showLogin();
     }
 
     function createServer() {
