@@ -232,7 +232,75 @@ button:hover {
   </p>
 </div>
 
-  </div>  <div class="dashboard" id="dashboard"><div class="dashboard-container">
+  </div>  <div class="dashboard" id="dashboard">  <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;"><div style="width:280px;max-width:100%;background:rgba(255,255,255,.08);border-radius:22px;padding:20px;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);height:auto;">
+
+  <h2 style="margin-bottom:15px;color:#facc15">GTPS Panel</h2>
+
+  <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;line-height:1.8;">
+
+    <b style="color:#facc15">General</b>
+    <span>Home</span>
+    <span>Team Members</span>
+    <span>Marketplace</span>
+    <span>Statistics</span>
+    <span>Console</span>
+    <span>Logs</span>
+
+    <b style="color:#facc15">Premium</b>
+    <span>Server Addons</span>
+    <span>Upgrade Tier</span>
+    <span>Databases</span>
+
+    <b style="color:#facc15">Player Database</b>
+    <span>World Manager</span>
+    <span>Shop Manager</span>
+    <span>Mine Shop Manager</span>
+    <span>File Manager</span>
+
+    <b style="color:#facc15">Roles & Security</b>
+    <span>Role Manager</span>
+    <span>Title Manager</span>
+    <span>Device Bans</span>
+
+    <b style="color:#facc15">Custom Items</b>
+    <span>Resource Manager</span>
+    <span>Item Manager</span>
+    <span>Item Effects</span>
+    <span>Weather Manager</span>
+
+    <b style="color:#facc15">Machine Capacities</b>
+
+    <b style="color:#facc15">Settings</b>
+    <span>Feature Manager</span>
+    <span>Configuration</span>
+    <span>Client Settings</span>
+
+    <b style="color:#facc15">Development</b>
+    <span>Lua Scripts</span>
+    <span>Lua Performance</span>
+    <span>Recipes</span>
+    <span>Combiner</span>
+
+    <b style="color:#facc15">Extra Stuff</b>
+    <span>Discord Bot</span>
+    <span>Redeem Codes</span>
+    <span>Server Templates</span>
+    <span>Update</span>
+
+    <b style="color:#facc15">Tutorials</b>
+    <span>How-to-play</span>
+
+    <b style="color:#facc15">Miscellaneous</b>
+    <span>Join Discord</span>
+    <span>Leave</span>
+
+  </div>
+
+</div>
+
+<div style="flex:1;min-width:300px;">
+
+<div class="dashboard-container">
 
   <div class="topbar">
     <div>
@@ -367,13 +435,13 @@ button:hover {
   </div>  <script>
 
     function showRegister() {
-      document.getElementById('loginPage').classList.add('hidden');
-      document.getElementById('registerPage').classList.remove('hidden');
+      document.getElementById('loginPage').style.display = 'none';
+      document.getElementById('registerPage').style.display = 'flex';
     }
 
     function showLogin() {
-      document.getElementById('registerPage').classList.add('hidden');
-      document.getElementById('loginPage').classList.remove('hidden');
+      document.getElementById('registerPage').style.display = 'none';
+      document.getElementById('loginPage').style.display = 'flex';
     }
 
     function goDashboard() {
