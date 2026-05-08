@@ -170,63 +170,111 @@ button:hover {
 
   </style>
 </head>
-<body>  <div class="container" id="authPage">
+<body>  <div class="container" id="loginPage">
     <div class="card">
       <h1>Gtps.Host</h1>
-      <p>Elegant GTPS Hosting Dashboard</p><input type="text" id="username" placeholder="Username" />
-  <input type="password" id="password" placeholder="Password" />
+      <p>Login to your hosting dashboard</p><input type="text" id="loginUser" placeholder="Username" />
+  <input type="password" id="loginPass" placeholder="Password" />
 
-  <button onclick="login()">Register / Login</button>
+  <button onclick="goDashboard()">Login</button>
+
+  <p style="margin-top:20px">
+    You dont have an account?
+    <span onclick="showRegister()" style="color:#60a5fa;cursor:pointer;font-weight:bold">
+      Sign up
+    </span>
+  </p>
 </div>
 
-  </div>  <div class="dashboard" id="dashboard">
-    <div class="topbar">
-      <div>
-        <h1 style="font-size:30px">Gtps.Host</h1>
-        <p style="text-align:left">Welcome to your dashboard</p>
-      </div><div class="profile-btn" onclick="toggleSettings()">
-    <img id="avatarPreview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar">
+  </div>  <div class="container hidden" id="registerPage">
+    <div class="card">
+      <h1>Create Account</h1>
+      <p>Register your Gtps.Host account</p><input type="text" id="regUser" placeholder="Username" />
+  <input type="email" id="regEmail" placeholder="Email" />
+  <input type="password" id="regPass" placeholder="Password" />
+
+  <button onclick="showLogin()">Register</button>
+
+  <p style="margin-top:20px">
+    Already have account?
+    <span onclick="showLogin()" style="color:#60a5fa;cursor:pointer;font-weight:bold">
+      Login
+    </span>
+  </p>
+</div>
+
+  </div>  <div class="dashboard hidden" id="dashboard"><div class="topbar">
+  <div>
+    <h1 style="font-size:32px">Gtps.Host</h1>
+    <p style="text-align:left">Elegant GTPS Hosting</p>
+  </div>
+
+  <div class="profile-btn" onclick="toggleSettings()">
+    <img id="avatarPreview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
   </div>
 </div>
 
 <div class="dashboard-card">
   <h2>Create Server</h2>
-  <p style="text-align:left">Create your GTPS server instantly.</p>
 
   <input type="text" id="serverName" placeholder="Server Name" />
   <input type="text" id="serverOwner" placeholder="Owner Name" />
 
   <button onclick="createServer()">Create Server</button>
 
-  <div class="price-box">
-    <h3>Hosting Price</h3>
-    <p style="text-align:left">
-      Biaya server adalah <b>Rp20.000</b> untuk 1 bulan hosting.
-    </p>
-  </div>
-
   <div id="serverResult"></div>
 </div>
 
+<div class="dashboard-card">
+  <h2>Flash Hosting Card</h2>
+
+  <div style="
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  padding:25px;
+  border-radius:22px;
+  margin-top:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  ">
+
+    <h2 style="margin-bottom:10px">Server 1 Month</h2>
+    <h1 style="font-size:42px;margin-bottom:15px">Rp20K</h1>
+
+    <p style="text-align:left;color:#dbeafe">
+      High Performance GTPS Hosting
+      <br>
+      24/7 Online Server
+      <br>
+      Elegant Dashboard Access
+    </p>
+
+    <button onclick="buyServer()" style="margin-top:20px;background:white;color:#2563eb">
+      Buy Now
+    </button>
+  </div>
+</div>
+
   </div>  <div class="settings-menu" id="settingsMenu">
-    <h3>Settings</h3><p style="text-align:left">Upload Avatar</p>
-<input type="file" accept="image/*" onchange="changeAvatar(event)" />
+    <h3>Profile Settings</h3><p style="text-align:left">Custom Avatar</p>
+<input type="file" accept="image/*" onchange="changeAvatar(event)">
 
 <p style="text-align:left">Background Color</p>
-<input type="color" onchange="changeBackground(this.value)" />
+<input type="color" onchange="changeBackground(this.value)">
 
   </div>  <script>
-    function login() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
 
-      if(username === '' || password === '') {
-        alert('Please fill all fields');
-        return;
-      }
+    function showRegister() {
+      document.getElementById('loginPage').classList.add('hidden');
+      document.getElementById('registerPage').classList.remove('hidden');
+    }
 
-      document.getElementById('authPage').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
+    function showLogin() {
+      document.getElementById('registerPage').classList.add('hidden');
+      document.getElementById('loginPage').classList.remove('hidden');
+    }
+
+    function goDashboard() {
+      document.getElementById('loginPage').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
     }
 
     function createServer() {
@@ -235,19 +283,22 @@ button:hover {
       const result = document.getElementById('serverResult');
 
       if(name === '' || owner === '') {
-        alert('Please complete server information');
+        alert('Complete server information');
         return;
       }
 
       result.innerHTML = `
-        <div class="server-box">
-          <h3>Server Created</h3>
-          <p><span>Server:</span> ${name}</p>
-          <p><span>Owner:</span> ${owner}</p>
-          <p><span>Status:</span> Waiting Payment</p>
-          <p><span>Price:</span> Rp20.000 / month</p>
-        </div>
+      <div class="server-box">
+        <h3>Server Created</h3>
+        <p><span>Server:</span> ${name}</p>
+        <p><span>Owner:</span> ${owner}</p>
+        <p><span>Status:</span> Waiting Payment</p>
+      </div>
       `;
+    }
+
+    function buyServer() {
+      window.location.href = 'https://chat.whatsapp.com/CWd6wE85WqcAb03WzwF1BQ';
     }
 
     function toggleSettings() {
@@ -272,5 +323,6 @@ button:hover {
     function changeBackground(color) {
       document.body.style.background = color;
     }
+
   </script></body>
-  </html>
+</html>
