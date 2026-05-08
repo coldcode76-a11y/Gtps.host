@@ -253,6 +253,13 @@ button:hover {
       <input type="text" id="serverName" placeholder="Server Name">
       <input type="text" id="serverOwner" placeholder="Owner Name">
 
+      <select id="serverTier" style="width:100%;padding:13px;border:none;border-radius:14px;background:rgba(255,255,255,.08);color:white;margin-bottom:14px;">
+        <option value="Bronze Tier">Bronze Tier</option>
+        <option value="Gold Tier">Gold Tier</option>
+        <option value="Diamond Tier">Diamond Tier</option>
+        <option value="Emerald Tier">Emerald Tier</option>
+      </select>
+
       <button onclick="createServer()">Create Server</button>
 
       <div id="serverResult"></div>
@@ -378,12 +385,97 @@ button:hover {
     function createServer() {
       const name = document.getElementById('serverName').value;
       const owner = document.getElementById('serverOwner').value;
+      const tier = document.getElementById('serverTier').value;
       const result = document.getElementById('serverResult');
 
       if(name === '' || owner === '') {
         alert('Complete server information');
         return;
       }
+
+      result.innerHTML = `
+      <div class="server-box">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;gap:10px;flex-wrap:wrap;">
+
+          <div>
+            <h3 style="color:#facc15;cursor:pointer" onclick="openServerDashboard()">${name}</h3>
+            <p style="text-align:left;margin:0">Owner: ${owner}</p>
+            <p style="text-align:left;margin:0">Tier: ${tier}</p>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center;">
+
+            <button onclick="togglePower(this)" style="width:auto;padding:10px 14px;border-radius:12px;background:#10b981;color:black;font-size:13px;">
+              ON
+            </button>
+
+            <button onclick="renameServer()" style="width:auto;padding:10px 14px;border-radius:12px;background:#1f2937;color:white;font-size:18px;">
+              ⋮
+            </button>
+
+          </div>
+
+        </div>
+
+        <div style="background:rgba(255,255,255,.04);padding:15px;border-radius:16px;margin-top:10px;">
+
+          <h3 style="margin-bottom:10px;color:#facc15">Server Perks</h3>
+
+          <p style="text-align:left;line-height:1.8">
+          • Hosting Tier: ${tier}<br>
+          • GTPS Dashboard Access<br>
+          • Growtopia Private Server
+          </p>
+
+          <h3 style="margin:18px 0 10px;color:#facc15">Addons</h3>
+
+          <div style="display:flex;flex-direction:column;gap:10px;">
+
+            <div style="background:rgba(255,255,255,.05);padding:12px;border-radius:14px;">
+              <b>IP Decided</b><br>
+              500.000 IDR
+            </div>
+
+            <div style="background:rgba(255,255,255,.05);padding:12px;border-radius:14px;">
+              <b>Player Capacities 1000</b><br>
+              50.000 IDR
+            </div>
+
+            <div style="background:rgba(255,255,255,.05);padding:12px;border-radius:14px;">
+              <b>Upgrade Core AMD Ryzen 8</b><br>
+              300.000 IDR
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      `;
+    }
+
+    function openServerDashboard() {
+      alert('Opening Server Dashboard...');
+    }
+
+    function togglePower(btn) {
+      if(btn.innerText === 'ON') {
+        btn.innerText = 'OFF';
+        btn.style.background = '#ef4444';
+      } else {
+        btn.innerText = 'ON';
+        btn.style.background = '#10b981';
+      }
+    }
+
+    function renameServer() {
+      const newName = prompt('Enter new server name');
+
+      if(newName) {
+        document.querySelector('.server-box h3').innerText = newName;
+      }
+    }
 
       result.innerHTML = `
       <div class="server-box">
